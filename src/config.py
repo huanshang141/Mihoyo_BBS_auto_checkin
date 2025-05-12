@@ -27,12 +27,12 @@ config = {
             'useragent': 'Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36',
             'retries': 3,
-            'genshin': {'checkin': True, 'black_list': []},
+            'genshin': {'checkin': False, 'black_list': []},
             'honkai2': {'checkin': False, 'black_list': []},
             'honkai3rd': {'checkin': False, 'black_list': []},
             'tears_of_themis': {'checkin': False, 'black_list': []},
-            'honkai_sr': {'checkin': False, 'black_list': []},
-            'zzz': {'checkin': False, 'black_list': []}
+            'honkai_sr': {'checkin': True, 'black_list': []},
+            'zzz': {'checkin': True, 'black_list': []}
         },
         'os': {
             'enable': False, 'cookie': '', 'lang': 'zh-cn',
@@ -130,7 +130,7 @@ def config_v13_update(data: dict):
     return new_config
 
 
-def load_config(p_path=None):
+def load_config(p_path: str =None,cookie: str=None):
     global config
     # 使用默认配置作为基础
     data = deepcopy(config_raw)
@@ -161,7 +161,11 @@ def load_config(p_path=None):
     # 从环境变量加载COOKIE（优先级高于文件配置）
     if os.getenv("COOKIE"):
         log.info("从环境变量加载COOKIE")
-        data["account"]["cookie"] = os.getenv("COOKIE")
+        if cookie:
+            cookie = deepcopy(cookie)
+            data["account"]["cookie"] = cookie
+        else:
+            data["account"]["cookie"] = os.getenv("COOKIE")
     
     # 去除cookie最末尾的空格
     data["account"]["cookie"] = str(data["account"]["cookie"]).rstrip(' ')

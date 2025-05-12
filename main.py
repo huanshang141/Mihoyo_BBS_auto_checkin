@@ -10,9 +10,9 @@ from src.utils.error import *
 from src.utils.loghelper import log
 import src.notify.wechat as WeChat
 
-def main():
+def main(cookie: str = None) -> tuple:
     # 加载配置
-    config.load_config()
+    config.load_config(cookie=cookie)
     
     if not config.config["enable"]:
         log.warning("Config 未启用！")
