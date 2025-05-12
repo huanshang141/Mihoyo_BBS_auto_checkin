@@ -10,7 +10,7 @@ def get_new_session(**kwargs):
         http_client = httpx.Client(timeout=30, transport=httpx.HTTPTransport(retries=10), follow_redirects=True,
                                    **kwargs)
         # 当openssl版本小于1.0.2的时候直接进行一个空请求让httpx报错
-        print("openssl版本:", httpx.get()._transport._ssl_context.get_protocol_name())
+        # print("openssl版本:", httpx.get()._transport._ssl_context.get_protocol_name())
         import tools
 
         if tools.get_openssl_version() < 102:
