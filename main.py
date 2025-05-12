@@ -8,6 +8,7 @@ import src.checkin.gamecheckin as gamecheckin
 from src import config
 from src.utils.error import *
 from src.utils.loghelper import log
+import src.notify.wechat as WeChat
 
 def main():
     # 加载配置
@@ -34,6 +35,7 @@ if __name__ == "__main__":
     # try:
         status_code, message = main()
         print(message)
+        WeChat.send_wechat_notification(message)
         
         # 如果在GitHub Actions环境中，设置输出变量
         if os.getenv('GITHUB_ACTIONS') == 'true':
