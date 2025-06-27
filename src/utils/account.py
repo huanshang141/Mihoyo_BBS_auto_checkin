@@ -2,7 +2,6 @@ import src.api.setting as setting
 from .request import http
 from .loghelper import log
 
-
 def get_account_list(game_id: str, headers: dict, update: bool = False) -> list:
     game_name = setting.game_id2name.get(game_id, game_id)
 

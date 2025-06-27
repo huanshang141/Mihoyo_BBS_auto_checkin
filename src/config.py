@@ -27,7 +27,7 @@ config = {
             'useragent': 'Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36',
             'retries': 3,
-            'genshin': {'checkin': False, 'black_list': []},
+            'genshin': {'checkin': True, 'black_list': []},
             'honkai2': {'checkin': False, 'black_list': []},
             'honkai3rd': {'checkin': False, 'black_list': []},
             'tears_of_themis': {'checkin': False, 'black_list': []},
